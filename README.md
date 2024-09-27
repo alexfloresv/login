@@ -22,13 +22,13 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Descriptcion
+## Descripcion
 
-[Nest](https://docs.nestjs.com/) Crear proyecto - Documentacion oficial Nest.
+[Nest](https://docs.nestjs.com/) Crear un Proyecto - Documentacion oficial Nest.
 
 [Crear Libreria Nest](https://docs.nestjs.com/cli/libraries) Crea una libreria documentacion oficial Nest.
 
-## Crear una libreria en el nuevo proyecto
+## Crear y Usar la Libreria Login en un Proyecto
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="300" alt="Nest Logo" /></a>
@@ -82,37 +82,149 @@ Yes
 
 git clone https://github.com/alexfloresv/login.git
 
+# Para este paso tenemos que ubicarnos dentro de libs y reemplar a login.
+# las depencias ya estan creadas al crear la libreria "login" con el nombre del repositorio Git
+
 ```
-## Project setup
+## Importacion de la libreria Login a el Proyecto
 
 ```bash
-$ npm install
+# Ingresamos a el modulo principal del Proyecto
+
+app.module.ts
+
+# Importamos la libreria
+
+import { LoginModule } from '@login/login';// Importar librearía de login
+import { AdminModule } from '@login/login/admin/admin.module'; // Importar AdminModule para acceder a toda la lógica de autentificacion de admin
+import { UsersModule } from '@login/login/admin/users/users.module'; // Importar UsersModule para acceder a toda la lógica CRUD de creación de usuarios
+
+imports: [LoginModule,AdminModule, UsersModule], // Importar LoginModule para acceder a toda la lógica
+
+# Configuramos el archivo  "main.ts" con la Importacion de "cookieParser".
+
+import * as cookieParser from 'cookie-parser';// Importar cookieParser
+
+# Agregamos el uso de la lobreria dentro de la funcion principal
+
+app.use(cookieParser());//parsear cookies
+
+
 ```
 
-## Compile and run the project
+## Configuracion estandar de paquetes de NodeJs
 
 ```bash
-# development
-$ npm run start
+# Una vez Importada la libreria configuramos las dependencias que usa la libreria
+# Dentro del proyecto principal en "package.json".
 
-# watch mode
+"dependencies": {
+    "@nestjs-modules/mailer": "^2.0.2",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/event-emitter": "^2.0.4",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/passport": "^10.0.3",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^7.4.0",
+    "@prisma/client": "^5.20.0",
+    "bcrypt": "5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express-session": "^1.18.0",
+    "generate-password": "^1.7.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/express": "^4.17.17",
+    "@types/express-session": "^1.18.0",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.3.1",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/supertest": "^6.0.0",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.0",
+    "jest": "^29.5.0",
+    "lint-staged": "^15.2.8",
+    "prettier": "^3.3.3",
+    "prisma": "^5.20.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
+  },
+
+  # Una vez configurada las depencias usar el comando
+
+$ npm i
+
+```
+
+## Configuracion de la base de datos que usa la libreria Login
+
+```bash
+# Creamos las tablas basicas que usa la libreria usando el ORM Prisma
+# Instamos Prisma en el proyecto principal si no esta aun instalado con.
+
+npm install prisma -g
+
+prisma init
+
+# Configuracion de el archivo .env
+# Copiamos y pegamos la configuracion de .env que se encuentra dentro de la libreria en el archivo.
+
+env.txt
+
+# Configuramos env para que apunte a nuestra base de datos
+# Esta configuracion apunta a una base de datos llamada login 
+
+DATABASE_URL="postgresql://admin:admin@localhost:5432/login?schema=public"
+
+# Copiar y pegar la estructura de tablas de la libreria login que esta en el archivo.
+
+schemaLogin.txt
+
+# El archivo se encuetra dentro de la libreria login copiamos esta estructura.
+# Al proyecto principal dentro del archivo.
+
+schema.prisma
+
+# ejecutamos la Migracion de la estructura a nuestra base de datos con el comando
+
+npx prisma migrate dev
+
+# Fin de la configuracion de la libreria login
+
 $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ npm install
 ```
 
 ## Resources
