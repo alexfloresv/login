@@ -89,7 +89,7 @@ git clone https://github.com/alexfloresv/login.git
 ## Importacion de la libreria Login a el Proyecto
 
 ```bash
-# Ingresamos a el modulo principal del Proyecto
+# Ingresamos al modulo principal del Proyecto
 
 app.module.ts
 
@@ -101,11 +101,11 @@ import { UsersModule } from '@login/login/admin/users/users.module'; // Importar
 
 imports: [LoginModule,AdminModule, UsersModule], // Importar LoginModule para acceder a toda la lógica
 
-# Configuramos el archivo  "main.ts" con la Importacion de "cookieParser".
+# Configuramos el archivo  "main.ts" del proyecto principal  con la Importacion de "cookieParser".
 
 import * as cookieParser from 'cookie-parser';// Importar cookieParser
 
-# Agregamos el uso de la lobreria dentro de la funcion principal
+# Agregamos el uso de esta libreria dentro de la funcion principal
 
 app.use(cookieParser());//parsear cookies
 
@@ -194,7 +194,7 @@ npm install prisma -g
 
 prisma init
 
-# Configuracion de el archivo .env
+# Configuracion del archivo .env
 # Copiamos y pegamos la configuracion de .env que se encuentra dentro de la libreria en el archivo.
 
 env.txt
@@ -219,36 +219,104 @@ npx prisma migrate dev
 
 # Fin de la configuracion de la libreria login
 
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
-
-$ npm install
 ```
 
-## Resources
+## Uso de la libreria 
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+# Ejecutamos el Proyecto Principal con
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+$ npm run start:dev
 
-## Support
+# verificamos que no envie errores si es el caso verificar las depencias  en los archivos 
+# Antes mencionados del proyecto principal
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+tsconfig.json
+
+package.json
+
+# Iniciamos Postman o otro para enviar solicitudes al backend
+
+# Primero crearemos el super admin con
+
+# crear super admin usuario
+
+@post
+http://localhost:3000/seeds
+
+# Login usuario
+
+@post
+http://localhost:3000/auth/login
+
+# Cerrar Seccion user
+@post
+http://localhost:3000/auth/logout
+
+# Ver todos los usuarios
+@get
+http://localhost:3000/users
+
+# Para crear un nuevo usuario es necesario un rol iremos la tabla rol de la base de datos
+# y agregaremos de manera forzada un nuevo rol como id en el registro ingresaremos
+# "1634ead1-8146-47ac-8aa7-4cf97f76efc3" y llenamos los campos 
+
+id:1634ead1-8146-47ac-8aa7-4cf97f76efc3 ; name:usuario ; description:usuario ; isActive:t ("t=true; f=false") ; createAt: ; updatedAt: ;
+
+# Ahora podemos crear usuarios
+
+#  crea usuarios
+
+@post
+http://localhost:3000/users
+
+# enviar json* contraseña con mayusculas minimas (1) y minimo (1) numero y minimo de caracteres de contraseña (6)
+{
+"name": "usuarioNuevo",
+"email": "usuario.nuevo@gmail.com",
+"password": "Usuario1234",
+"phone": "",
+"roles": [
+"1634ead1-8146-47ac-8aa7-4cf97f76efc3"
+]
+}
+
+# Actualizamos usuarios
+
+@Patch
+http://localhost:3000/users/"id del usuario creado "
+
+# enviar json*
+
+{
+"name": "tuNombre"
+}
+
+# Eliminar usuario
+
+@delete
+http://localhost:3000/users/"id-del usuario"}
+
+# Fin uso de entrade datos que maneja la libreria Login
+
+# Usar restringcion de login usando el decorador de. 
+
+@Auth
+
+# En el sistema para ingresar al sistema invocalo en el contralador del Proyecto Principal
+
+```
+
+## Soporte
+
+Documetacion Nest [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Author - [Alx,Fernado]
 - Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Nest is [MIT licensed](https://nestjs.com).
