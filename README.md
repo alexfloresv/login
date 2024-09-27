@@ -31,7 +31,7 @@
 ## Crear una libreria en el nuevo proyecto
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="200" alt="Nest Logo" /></a>
 </p>
 
 Crear una libreria en el proyecto con el nombre del repositorio "login".
