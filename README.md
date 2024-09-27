@@ -31,26 +31,28 @@
 ## Crear una libreria en el nuevo proyecto
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="300" alt="Nest Logo" /></a>
 </p>
 
-Crear una libreria en el proyecto con el nombre del repositorio "login".
+```bash
+
+# Crear una libreria en el proyecto con el nombre del repositorio "login".
 
 nest g library login
 
-La configuracion al usar el comando sera.
+# La configuracion al usar el comando sera.
 
 ? What... ? @login
 
-Se creara una carpeta "libs" que administra librearias creadas ubicamos "login".
+# Se creara una carpeta "libs" que administra librearias creadas ubicamos "login".
 
-El comando configurara las dependencias de la libreria creada dentro del proyecto en los archivos.
+# El comando configurara las dependencias de la libreria creada dentro del proyecto en los archivos.
 
 tsconfig.json
 
 package.json
 
-La estructura de libs con la libreria login debe de ser la siguente.
+# La estructura de libs con la libreria login debe de ser la siguente.
 
 libs
 └───login
@@ -62,11 +64,11 @@ libs
             login.service.spec.ts
             login.service.ts
 
-Podemos crear mas librerias dentro de libs con.
+# Podemos crear mas librerias dentro de libs con.
 
 nest g library nueva-libreria
 
-Y podemos gestionar logica para esa nueva librearia como crear un CRUD basico con el comando Cli de nest.
+# Y podemos gestionar logica para esa nueva librearia como crear un CRUD basico con el comando Cli de nest.
 
 nest g resource nuevo-modulo --no-spec
 
@@ -74,12 +76,13 @@ Api
 
 Yes
 
-//Pero no nos enfocaremos en el crud//
+# //Pero no nos enfocaremos en el crud//
 
-Vamos a reemplazar la libreria "login" con el repositorio Git de Login con.
+# Vamos a reemplazar la libreria "login" con el repositorio Git de Login con.
 
 git clone https://github.com/alexfloresv/login.git
 
+```
 ## Project setup
 
 ```bash
