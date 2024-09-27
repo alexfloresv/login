@@ -22,9 +22,63 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descriptcion
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://docs.nestjs.com/) Crear proyecto - Documentacion oficial Nest.
+
+[Crear Libreria Nest](https://docs.nestjs.com/cli/libraries) Crea una libreria documentacion oficial Nest.
+
+## Crear una libreria en el nuevo proyecto
+
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://thumbs.dreamstime.com/b/team-hierarchy-connection-group-digital-digitalteam-high-quality-photo-208264515.jpg" width="120" alt="Nest Logo" /></a>
+</p>
+
+Crear una libreria en el proyecto con el nombre del repositorio "login".
+
+nest g library login
+
+La configuracion al usar el comando sera.
+
+? What... ? @login
+
+Se creara una carpeta "libs" que administra librearias creadas ubicamos "login".
+
+El comando configurara las dependencias de la libreria creada dentro del proyecto en los archivos.
+
+tsconfig.json
+
+package.json
+
+La estructura de libs con la libreria login debe de ser la siguente.
+
+libs
+└───login
+    │   tsconfig.lib.json
+    │
+    └───src
+            index.ts
+            login.module.ts
+            login.service.spec.ts
+            login.service.ts
+
+Podemos crear mas librerias dentro de libs con.
+
+nest g library nueva-libreria
+
+Y podemos gestionar logica para esa nueva librearia como crear un CRUD basico con el comando Cli de nest.
+
+nest g resource nuevo-modulo --no-spec
+
+Api
+
+Yes
+
+//Pero no nos enfocaremos en el crud//
+
+Vamos a reemplazar la libreria "login" con el repositorio Git de Login con.
+
+git clone https://github.com/alexfloresv/login.git
 
 ## Project setup
 
