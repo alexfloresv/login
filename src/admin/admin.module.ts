@@ -10,6 +10,7 @@ import { ModulesModule } from './modules/modules.module';
 import { PermissionsModule } from './permissions/permissions.module';
 
 
+
 @Module({
   imports: [
     UsersModule,
@@ -23,6 +24,6 @@ import { PermissionsModule } from './permissions/permissions.module';
   ],
   controllers: [AdminController],
   providers: [AdminService],
-  exports: [AdminService, PrismaModule,],
+  exports: []
 })
 export class AdminModule {}

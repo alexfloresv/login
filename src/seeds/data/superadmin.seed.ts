@@ -1,5 +1,4 @@
-import { ValidRols } from "@login/login/admin/auth/interfaces";
-
+import { ValidRols } from '@login/login/admin/auth/interfaces';
 
 export const superAdminSeed = {
   name: 'Super Admin',

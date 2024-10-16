@@ -1,21 +1,17 @@
-import { Controller, Patch, Post } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { SeedsService } from './seeds.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Seeds')
-@Controller('seeds',
-/*   version: '1' */
-)
+@Controller({
+  path: 'seeds',
+  version: '1'
+})
 export class SeedsController {
   constructor(private readonly seedsService: SeedsService) {}
 
   @Post()
-  initDataBase() {
+  initSeed() {
     return this.seedsService.generateInit();
-  }
-
-  @Patch()
-  updateDataBase() {
-    return this.seedsService.updateDataSeed();
   }
 }
